@@ -1,5 +1,6 @@
 // webpack.config.js
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const LoadablePlugin = require("@loadable/webpack-plugin");
 const path = require("path");
 
 module.exports = () => ({
@@ -27,5 +28,5 @@ module.exports = () => ({
   resolve: {
     extensions: [".js", ".jsx"],
   },
-  plugins: [new CleanWebpackPlugin()],
+  plugins: [new CleanWebpackPlugin(), new LoadablePlugin()],
 });

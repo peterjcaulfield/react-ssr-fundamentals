@@ -1,8 +1,14 @@
 // source/routes.jsx
 import React from "react";
-import Home from "./pages/Home";
-import About from "./pages/About";
+import loadable from "@loadable/component";
 import { Route, Switch } from "react-router";
+
+const Home = loadable(() => import("./pages/Home"), {
+  fallback: <div>loading...</div>,
+});
+const About = loadable(() => import("./pages/About"), {
+  fallback: <div>loading...</div>,
+});
 
 // we'll need this export later
 export const routes = [
