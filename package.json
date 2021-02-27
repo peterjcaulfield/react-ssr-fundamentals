@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node ./src/server/index.js",
-    "dev": "nodemon --watch ./src -e js,jsx --exec npm run start"
+    "dev": "npm run build && babel-node ./src/server/index.js",
+    "nodemon": "nodemon --watch ./src -e js,jsx --exec npm run dev",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
@@ -20,6 +22,10 @@
     "@babel/node": "^7.13.0",
     "@babel/preset-env": "^7.13.8",
     "@babel/preset-react": "^7.12.13",
-    "nodemon": "^2.0.7"
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "nodemon": "^2.0.7",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
   }
 }
