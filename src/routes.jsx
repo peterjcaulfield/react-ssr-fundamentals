@@ -2,6 +2,7 @@
 import React from "react";
 import loadable from "@loadable/component";
 import { Route, Switch } from "react-router";
+import { getAboutData } from "./pages/About";
 
 const Home = loadable(() => import("./pages/Home"), {
   fallback: <div>loading...</div>,
@@ -21,6 +22,7 @@ export const routes = [
     path: "/about",
     component: About,
     exact: true,
+    getPageData: getAboutData,
   },
 ];
 

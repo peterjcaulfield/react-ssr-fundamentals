@@ -6,6 +6,8 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 import { App } from "../components/App";
 import { ChunkExtractor } from "@loadable/server";
+import { routes } from "../routes";
+import { matchPath } from "react-router";
 
 const app = express();
 app.set("view engine", "ejs");
@@ -16,15 +18,29 @@ app.use(express.static("public"));
 
 const statsFile = path.resolve("public/loadable-stats.json");
 
-app.get("*", (req, res) => {
+const getPageData = async (path) => {
+  const match = routes.find((route) => {
+    return matchPath(path, route);
+  });
+
+  if (match && match.getPageData) {
+    const initialState = await match.getPageData();
+    return initialState;
+  }
+  return null;
+};
+
+app.get("*", async (req, res) => {
   const extractor = new ChunkExtractor({
     statsFile,
     entrypoints: ["app"],
   });
 
+  const initialState = await getPageData(req.path);
+
   const jsx = extractor.collectChunks(
     <StaticRouter location={req.path}>
-      <App />
+      <App initialState={initialState} />
     </StaticRouter>
   );
 
@@ -32,7 +48,7 @@ app.get("*", (req, res) => {
 
   const scripts = extractor.getScriptTags();
 
-  res.render("index", { app, scripts });
+  res.render("index", { app, initialState, scripts });
 });
 
 const port = process.env.PORT || 3000;

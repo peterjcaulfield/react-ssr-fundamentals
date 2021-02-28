@@ -2,5 +2,8 @@
     <body>
         <div id="react-root"><%- app %></div>
     </body>
+    <script>
+          window.__INITIAL_STATE__ = <%- JSON.stringify(initialState) %>;
+    </script>
     <%- scripts %>
 </html>
