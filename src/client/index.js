@@ -1,4 +1,3 @@
-// src/client/index.js
 import React from "react";
 import { loadableReady } from "@loadable/component";
 import { hydrate } from "react-dom";

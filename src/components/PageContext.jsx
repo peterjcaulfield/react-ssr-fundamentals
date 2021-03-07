@@ -1,4 +1,3 @@
-// src/component/PageContext.jsx
 import React, { useContext, useState } from "react";
 
 const PageContext = React.createContext();

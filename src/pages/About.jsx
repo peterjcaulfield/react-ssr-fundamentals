@@ -1,4 +1,3 @@
-// src/pages/About.jsx
 import React, { useEffect } from "react";
 import { usePageContext } from "../components/PageContext";
 import fetch from "cross-fetch";

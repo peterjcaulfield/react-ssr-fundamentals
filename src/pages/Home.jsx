@@ -1,4 +1,3 @@
-// Home.jsx
 import React from "react";
 import { WithoutSSR } from "../components/WithoutSSR";
 
